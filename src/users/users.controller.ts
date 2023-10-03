@@ -25,7 +25,6 @@ export class UsersController {
   create(@Req() req: Request, @Body() createUserDto: CreateUserDto) {
     const userId = req.user['sub'];
     return this.usersService.create(userId, createUserDto);
-    // return this.usersService.create(updateUserDto);
   }
 
   @UseGuards(AccessTokenGuard)

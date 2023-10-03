@@ -9,11 +9,11 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   app.setGlobalPrefix('api');
 
-  const user = configService.get('RABBITMQ_USER');
-  const password = configService.get('RABBITMQ_PASSWORD');
-  const host = configService.get('RABBITMQ_HOST');
-  const queueName = configService.get('RABBITMQ_QUEUE_NAME');
- 
+  const user = configService.get<string>('RABBITMQ_USER');
+  const password = configService.get<string>('RABBITMQ_PASS');
+  const host = configService.get<string>('RABBITMQ_HOST');
+  const queueName = configService.get<string>('RABBITMQ_QUEUE_NAME');
+  
   await app.listen(3000);
   await app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.RMQ,

@@ -23,11 +23,6 @@ export class UsersService {
       .findByIdAndUpdate(userId, createUserDto,{ new: true })
       .exec();
   }
-  
-  // async create(createUserDto: CreateUserDto): Promise<UserDocument> {
-  //   const createdUser = new this.userModel(createUserDto);
-  //   return createdUser.save();
-  // }
 
   async findAll(): Promise<UserDocument[]> {
     return this.userModel.find().exec();

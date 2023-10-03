@@ -14,13 +14,13 @@ export class ChatService {
   async sendMessage(createChatDto: CreateChatDto): Promise<ChatDocument> {
     
     const user = this.configService.get<string>('RABBITMQ_USER');
-    const password = this.configService.get<string>('RABBITMQ_PASSWORD');
+    const password = this.configService.get<string>('RABBITMQ_PASS');
     const host = this.configService.get<string>('RABBITMQ_HOST');
     const queueName = this.configService.get<string>('RABBITMQ_QUEUE_NAME');
 
     const createdChat = new this.chatModel(createChatDto);
 
-    ClientProxyFactory.create({
+    await ClientProxyFactory.create({
       transport: Transport.RMQ,
       options: {
         urls: [`amqp://${user}:${password}@${host}`],
